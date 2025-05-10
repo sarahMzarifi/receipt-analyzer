@@ -4,7 +4,7 @@ from preprocess import binarize
 from parse_receipt import extract_receipt_data, save_to_json
 
 # Set Tesseract executable path
-pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 def process_receipt(image_path):
     image = cv2.imread(image_path)
     if image is None:
