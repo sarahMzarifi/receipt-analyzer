@@ -1,0 +1,14 @@
+# Byte-compiled / cache
+__pycache__/
+*.pyc
+
+# Virtual env
+venv/
+
+# Temp/Output
+temp/
+data/
+receipts.json
+
+# OS files
+.DS_Store
