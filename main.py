@@ -2,9 +2,14 @@ import cv2
 import pytesseract
 from preprocess import binarize
 from parse_receipt import extract_receipt_data, save_to_json
+import platform
 
-# Set Tesseract executable path
-pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+if platform.system() == "Windows":
+    pytesseract.pytesseract.tesseract_cmd = r"C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+else:
+    pytesseract.pytesseract.tesseract_cmd = "/usr/bin/tesseract"  # for most Linux servers
+
+
 def process_receipt(image_path):
     image = cv2.imread(image_path)
     if image is None:
