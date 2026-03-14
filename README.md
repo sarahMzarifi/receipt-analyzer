@@ -11,6 +11,8 @@ This Streamlit app extracts key details from receipt images (date, amount, merch
 ## 📷 Sample Screenshot
 ![alt text](image.png)
 
+![Past Insights](insights.png)
+
 ## 🚀 How to Run Locally
 ```bash
 git clone https://github.com/sarahMzarifi/receipt-analyzer.git
@@ -23,6 +25,3 @@ pip install -r requirements.txt
 
 # Launch the app
 streamlit run dashboard.py
-
-## Past Insights
-![alt text](pastInsights.png)
