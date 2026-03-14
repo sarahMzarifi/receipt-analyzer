@@ -23,3 +23,6 @@ pip install -r requirements.txt
 
 # Launch the app
 streamlit run dashboard.py
+
+## Past Insights
+![alt text](pastInsights.png)
