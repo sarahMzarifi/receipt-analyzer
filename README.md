@@ -11,7 +11,7 @@ This Streamlit app extracts key details from receipt images (date, amount, merch
 ## 📷 Sample Screenshot
 ![alt text](image.png)
 
-![Past Insights](insights.png)
+![Past Insights](pastInsights.png)
 
 ## 🚀 How to Run Locally
 ```bash
