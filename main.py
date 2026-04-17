@@ -11,24 +11,34 @@ else:
 
 
 def process_receipt(image_path):
-    image = cv2.imread(image_path)
-    if image is None:
+    original_image = cv2.imread(image_path)
+
+    if original_image is None:
         raise ValueError(f"Error: Cannot read image at {image_path}")
 
-    # Preprocess the image
-    image = binarize(image)
+    # Preprocess image
+    preprocessed_image = binarize(original_image)
 
-    # OCR text extraction
     custom_config = r'--oem 3 --psm 6'
-    text = pytesseract.image_to_string(image, config=custom_config)
 
-    print("\nExtracted Text:\n")
-    print(text)
+    # BOTH OCR outputs
+    raw_text = pytesseract.image_to_string(original_image, config=custom_config)
+    processed_text = pytesseract.image_to_string(preprocessed_image, config=custom_config)
 
-    # Parse the extracted text into structured data
+    # Debug output
+    print("\n--- RAW OCR TEXT ---\n")
+    print(raw_text)
+
+    print("\n--- PROCESSED OCR TEXT ---\n")
+    print(processed_text)
+
+    # Use processed text
+    text = processed_text
+
+    # Parse structured data
     receipt_data = extract_receipt_data(text)
 
-    # Ensure each item has a category (optional feature support)
+    # Ensure categories exist
     for item in receipt_data.get("items", []):
         if "category" not in item:
             item["category"] = "Uncategorized"

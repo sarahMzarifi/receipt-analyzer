@@ -52,11 +52,18 @@ if os.path.exists("receipts.json"):
     with open("receipts.json", "r") as f:
         receipts = json.load(f)
 
+    # 🔹 Clean invalid entries globally
+    receipts = [r for r in receipts if isinstance(r, dict)]
+
     if receipts:
         for i, r in enumerate(receipts[::-1]):
-            display_index = len(receipts) - 1 - i  # original index in list
-            with st.expander(f"Receipt #{len(receipts) - i} — {r.get('date', 'N/A')}"):
+            display_index = len(receipts) - 1 - i
+
+            date = r.get("date", "N/A")
+
+            with st.expander(f"Receipt #{len(receipts) - i} — {date}"):
                 st.json(r)
+
                 if st.button(f"Delete Receipt #{len(receipts) - i}", key=f"delete_{display_index}"):
                     receipts.pop(display_index)
                     with open("receipts.json", "w") as f:
@@ -74,17 +81,27 @@ st.subheader("Spending Insights")
 
 if receipts:
     rows = []
+
     for receipt in receipts:
+        if not isinstance(receipt, dict):
+            continue
+
         date = receipt.get("date", "Unknown")
+
         for item in receipt.get("items", []):
-            name_lower = item["name"].strip().lower()
+            if not isinstance(item, dict):
+                continue
+
+            name_lower = item.get("name", "").strip().lower()
+
             if name_lower in ["total", "subtotal", "change", "cash"]:
                 continue
+
             rows.append({
                 "Date": date,
-                "Item": item["name"],
+                "Item": item.get("name", "Unknown"),
                 "Category": item.get("category", "Uncategorized"),
-                "Amount": item["price"]
+                "Amount": item.get("price", 0)
             })
 
     df = pd.DataFrame(rows)
