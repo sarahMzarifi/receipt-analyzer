@@ -2,19 +2,28 @@
 
 This Streamlit app extracts key details from receipt images (date, amount, merchant, etc.) using Tesseract OCR and provides a categorized breakdown with visualizations.
 
-## 📌 Features
+## Features
 - Upload receipt images
 - Extracts information using OCR
 - Categorizes expenses (Food, Travel, etc.)
 - Displays expense summaries and pie charts
 
-## 📷 Sample Screenshot
+## Sample Screenshot
 ![alt text](image.png)
 
 ## Past Insights -Used different receipts
 ![Past Insights](pastInsights.png)
 
-## 🚀 How to Run Locally
+## Tesseract OCR Setup (Required)
+
+This project uses Tesseract OCR, which must be installed separately.
+
+### Windows:
+Download from:
+https://github.com/tesseract-ocr/tesseract
+
+After installation, update path in `main.py` if needed:
+## How to Run Locally
 ```bash
 git clone https://github.com/sarahMzarifi/receipt-analyzer.git
 
